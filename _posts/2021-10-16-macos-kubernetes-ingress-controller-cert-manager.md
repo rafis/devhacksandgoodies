@@ -39,3 +39,14 @@ spec:
     secretName: root-ca
 EOF
 ```
+
+Test configuration
+```
+kubectl create ingress ingdefault --class=nginx --default-backend=defaultsvc:http --rule="web.127.0.0.1.nip.io/*=svc:8080,tls=web.127.0.0.1.nip.io" --annotation="cert-manager.io/cluster-issuer=ca-cluster-issuer"
+
+curl --verbose https://web.127.0.0.1.nip.io
+
+kubectl delete certificate web.127.0.0.1.nip.io
+kubectl delete secret web.127.0.0.1.nip.io
+kubectl delete ingress ingdefault
+```
