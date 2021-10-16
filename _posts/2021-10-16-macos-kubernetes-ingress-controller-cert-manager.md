@@ -19,3 +19,23 @@ helm repo update
 
 helm -n cert-manager upgrade --install cert-manager jetstack/cert-manager --create-namespace --version v1.5.4 --reuse-values --set installCRDs=true --set prometheus.enabled=false
 ```
+
+Configuration using CA Issuer:
+```
+docker run --platform linux/amd64 -e domain=localhost --name mkcert -v ~/Documents/root-ca:/root/.local/share/mkcert vishnunair/docker-mkcert
+
+sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ~/Documents/root-ca/rootCA.pem
+
+kubectl -n cert-manager create secret tls root-ca --cert=/Users/user/Documents/root-ca/rootCA.pem --key=/Users/user/Documents/root-ca/rootCA-key.pem
+
+cat <<EOF | kubectl -n cert-manager apply -f -
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: ca-cluster-issuer
+  namespace: cert-manager
+spec:
+  ca:
+    secretName: root-ca
+EOF
+```
