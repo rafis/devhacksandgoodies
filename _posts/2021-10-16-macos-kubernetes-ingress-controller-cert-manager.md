@@ -3,7 +3,7 @@
 Enable Kubernetes in Docker Desktop for macOS.
 
 Install Ingress Controller:
-```sh
+```bash
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo update
 
@@ -13,7 +13,7 @@ helm -n ingress-nginx upgrade --install ingress-nginx ingress-nginx/ingress-ngin
 Default configuration is ok, no additional configuration is needed.
 
 Install Cert Manager:
-```sh
+```bash
 helm repo add jetstack https://charts.jetstack.io
 helm repo update
 
@@ -21,7 +21,7 @@ helm -n cert-manager upgrade --install cert-manager jetstack/cert-manager --crea
 ```
 
 Configuration using CA Issuer:
-```sh
+```bash
 docker run --platform linux/amd64 -e domain=localhost --name mkcert -v ~/Documents/root-ca:/root/.local/share/mkcert vishnunair/docker-mkcert
 
 sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ~/Documents/root-ca/rootCA.pem
@@ -41,7 +41,7 @@ EOF
 ```
 
 Test the configuration:
-```sh
+```bash
 kubectl create ingress ingdefault --class=nginx --default-backend=defaultsvc:http --rule="web.127.0.0.1.nip.io/*=kubernetes:443,tls=web.127.0.0.1.nip.io" --annotation="cert-manager.io/cluster-issuer=ca-cluster-issuer" --annotation="nginx.ingress.kubernetes.io/backend-protocol=HTTPS"
 
 curl --verbose https://web.127.0.0.1.nip.io/healthz
