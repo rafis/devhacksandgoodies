@@ -16,6 +16,7 @@ Prepare to install **cert-manager** ([just in case](https://github.com/jetstack/
 ```
 kubectl delete mutatingwebhookconfiguration.admissionregistration.k8s.io cert-manager-webhook || true
 kubectl delete validatingwebhookconfigurations.admissionregistration.k8s.io cert-manager-webhook || true
+kubectl delete -f https://github.com/jetstack/cert-manager/releases/download/v1.5.4/cert-manager.crds.yaml || true
 kubectl -n cert-manager delete secret cert-manager-webhook-ca
 kubectl delete namespace cert-manager || true
 kubectl create namespace cert-manager
@@ -47,6 +48,8 @@ spec:
   ca:
     secretName: root-ca
 EOF
+
+kubectl -n cert-manager delete secret cert-manager-webhook-ca
 ```
 
 Test the configuration:
