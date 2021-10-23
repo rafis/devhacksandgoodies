@@ -12,6 +12,15 @@ helm -n ingress-nginx upgrade --install ingress-nginx ingress-nginx/ingress-ngin
 
 Default configuration is ok, no additional configuration is needed.
 
+Prepare ([just in case](https://github.com/jetstack/cert-manager/issues/2602#issuecomment-636369696)):
+```
+kubectl delete mutatingwebhookconfiguration.admissionregistration.k8s.io cert-manager-webhook || true
+kubectl delete validatingwebhookconfigurations.admissionregistration.k8s.io cert-manager-webhook || true
+kubectl -n cert-manager delete secret cert-manager-webhook-ca
+kubectl delete namespace cert-manager || true
+kubectl create namespace cert-manager
+```
+
 Install Cert Manager:
 ```bash
 helm repo add jetstack https://charts.jetstack.io
