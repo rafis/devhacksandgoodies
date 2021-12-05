@@ -4,6 +4,6 @@ As now first the first season of Cowboy Bepop (2021) has ended we can review it 
 
 | Movie                | Cowboy Bepop (2021) | Sin City (2005) |
 |----------------------|---------------------|-----------------|
-| Music and atmosphere | Retro Jazz          | Retro Nuar      |
+| Music and atmosphere | Retro Jazz          | Retro Nior      |
 |                      |                     |                 |
 |                      |                     |                 |
