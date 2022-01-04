@@ -41,6 +41,6 @@ defaults:
     values:
       tags: Other
 
-permalink: /devhacksandgoodies/:collection/:path/
+permalink: /:collection/:path/
 
 
