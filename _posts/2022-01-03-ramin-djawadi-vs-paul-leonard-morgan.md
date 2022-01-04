@@ -5,4 +5,4 @@
 |----------------------|-------------------------|----------------------------------------------------|---------------------|
 | Ramin Djawadi        | yes                     |                                                    |                     |
 | Paul Leonard-Morgan  |                         | [yes](https://www.youtube.com/watch?v=63cA-G17hKI) |                     |
-| Tron: Legacy         |                         |                                                    | yes                 |
+| Daft Punk            |                         |                                                    | yes                 |
